@@ -38,7 +38,7 @@
 
 /* 4. Define the user Email and password that alreadey registerd or added in your project */
 #define USER_EMAIL "vitorizki37@gmail.com"
-#define USER_PASSWORD "lajelboy37"
+#define USER_PASSWORD ""
 
 //Define Firebase Data object
 FirebaseData fbdo;
