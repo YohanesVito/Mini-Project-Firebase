@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "908203397475",
+    "firebase_url": "https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "project_id": "mini-project-firebase",
+    "storage_bucket": "mini-project-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908203397475:android:285d24c7713a6b545cc356",
+        "android_client_info": {
+          "package_name": "com.example.iotminiproject2_firebase_71190429"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908203397475-vn465tqq8cot77on1hdi92pq5k6oimkp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.iotminiproject2_firebase_71190429",
+            "certificate_hash": "baca6577452cdd97ca7e0deae642ea3157afde3a"
+          }
+        },
+        {
+          "client_id": "908203397475-fvhh9rvhigl4778n22b7snekmb7ddk7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6BAGvkaM5rTPW2aY0dw3E_19nYUTKLhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908203397475-fvhh9rvhigl4778n22b7snekmb7ddk7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
