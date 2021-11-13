@@ -20,44 +20,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val buzzerStatus = findViewById<TextView>(R.id.tvBuzzerStatus)
+        val currMessage = findViewById<TextView>(R.id.tvCurrentMessage)
+        val waterSensor = findViewById<TextView>(R.id.tvWaterSensor)
 
-        val TagID = findViewById<TextView>(R.id.tvTagID)
-        val ownerName = findViewById<TextView>(R.id.tvOwnerName)
-        val isPermitted = findViewById<TextView>(R.id.tvIsPermitted)
-        val btnOnAlarm = findViewById<Button>(R.id.btnOnAlarm)
-        val btnOffAlarm = findViewById<Button>(R.id.btnOffAlarm)
-        val alarmStatus = findViewById<TextView>(R.id.tvAlarmStatus)
+        val message = findViewById<EditText>(R.id.etMessage)
+        val btnSendMessage = findViewById<Button>(R.id.btnSubmitMessage)
 
         val dref = FirebaseDatabase.getInstance("https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
 
         dref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val valueTagID = dataSnapshot.child("Node1/TagID").getValue().toString();
-                if(valueTagID.equals("0"))
-                    TagID.setText("No Tag");
+                val valueWaterSensor = dataSnapshot.child("Node2/WaterSensorValue").getValue().toString();
+                if(valueWaterSensor.equals("0"))
+                    waterSensor.setText("No Water Detected");
                 else
-                    TagID.setText(valueTagID);
+                    waterSensor.setText(valueWaterSensor);
 
-                val valueOwner = dataSnapshot.child("Node1/Owner").getValue().toString();
-                ownerName.setText(valueOwner);
+                val valueCurrentMessage = dataSnapshot.child("Node2/Message").getValue().toString();
+                currMessage.setText(valueCurrentMessage);
 
-                val valueisPermitted = dataSnapshot.child("Node1/IsPermitted").getValue().toString();
-                isPermitted.setText(valueisPermitted);
+                val valueBuzzerStatus = dataSnapshot.child("Node2/BuzzerStatus").getValue().toString();
+                buzzerStatus.setText(valueBuzzerStatus);
 
-                val valueAlarmStatus = dataSnapshot.child("Node1/AlarmStatus").getValue().toString();
-                alarmStatus.setText(valueAlarmStatus);
-
-//                val valueLampu = dataSnapshot.child("Node1/buzzer").getValue().toString();
-//                if(valueLampu1.equals("0"))
-//                    buttonLampu1.setChecked(false);
-//                else
-//                    buttonLampu1.setChecked(true);
-//
-//                valueLampu2 = dataSnapshot.child("Node1/buzzer").getValue().toString();
-//                if(valueLampu2.equals("0"))
-//                    buttonLampu2.setChecked(false);
-//                else
-//                    buttonLampu2.setChecked(true);
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -65,13 +50,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        btnOnAlarm.setOnClickListener {
-            FirebaseDatabase.getInstance("https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Node1/Alarm").setValue(1)
-            FirebaseDatabase.getInstance("https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Node1/AlarmStatus").setValue("On")
-        }
-        btnOffAlarm.setOnClickListener {
-            FirebaseDatabase.getInstance("https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Node1/Alarm").setValue(0)
-            FirebaseDatabase.getInstance("https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Node1/AlarmStatus").setValue("Off")
+        btnSendMessage.setOnClickListener {
+            val newMessage = message.text.toString()
+            FirebaseDatabase.getInstance("https://mini-project-firebase-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Node2/Message").setValue(newMessage)
         }
     }
 }
